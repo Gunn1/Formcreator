@@ -143,7 +143,8 @@ def index():
                 gemini_response = geminiQuery(
                     f"""
                     Generate JSON for creating questions in a Google Form based on the following prompt: {prompt}.
-                    For each question, specify the correct answer. The JSON should follow this format:
+                    For each question, specify the correct answer. The JSON should follow this format: """ +
+                    """
                     {
                       "requests": [
                         {
