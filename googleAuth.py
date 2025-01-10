@@ -219,6 +219,6 @@ Return *only* the JSON object. Do not include any backticks (```), code fences, 
 
 
 if __name__ == "__main__":
-    app.run(debug=False, use_reloader=False, port=8000)
+    app.run(debug=False, use_reloader=False, port=8000, host='0.0.0.0')
 
     
