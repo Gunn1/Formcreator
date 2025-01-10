@@ -33,12 +33,6 @@ SCOPES = [
 app = Flask(__name__)
 app.secret_key = "Supersecurekey"
 
-@app.before_request
-def redirect_to_https():
-    if request.headers.get('X-Forwarded-Proto') == 'http':
-        url = request.url.replace('http://', 'https://')
-        code = 301  # Permanent redirect
-        return redirect(url, code=code)
 # OAuth Configuration
 CREDENTIALS_FILE = "credentials.json"  # Path to your credentials JSON file
 SCOPES = [
@@ -54,7 +48,7 @@ def create_google_flow() -> Flow:
     return Flow.from_client_secrets_file(
         CREDENTIALS_FILE,
         scopes=SCOPES,
-        redirect_uri=url_for("callback", _external=True),
+        redirect_uri='https://generator.tylergunn.me',
     )
 
 def get_google_service(creds_json: str, service_name: str, version: str):
