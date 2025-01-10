@@ -123,6 +123,7 @@ def index():
     # Initialize Google Forms API
     form_service = None
     if "credentials" in session:
+        print(credentials)
         form_service = get_google_service(session["credentials"], 'forms', 'v1')
         if not form_service:
             error_message = "Failed to initialize Google Forms service."
