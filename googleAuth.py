@@ -154,8 +154,8 @@ def index():
       "createItem": {
         "item": {
           "title": "(Question Text)",
-          "questionItem/questionGroupItem/pageBreakItem/textItem/imageItem/videoItem": {
-            "question/image/video": {
+          "questionItem": {
+            "question": {
               "required": true/false,
               "choiceQuestion": {
                 "type": "RADIO/",
