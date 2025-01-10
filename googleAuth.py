@@ -152,7 +152,7 @@ def index():
     {
     "updateSettings": {
         "settings": {
-            "quizSettings": {"isQuiz": true/false}
+            "quizSettings": {"isQuiz": true}
         },
         "updateMask": "*"
         "collectEmail": True
