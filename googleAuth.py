@@ -32,6 +32,11 @@ SCOPES = [
 # Authenticate with Google Forms API using service account
 app = Flask(__name__)
 app.secret_key = "Supersecurekey"
+app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_TYPE'] = 'filesystem'  # Or your preferred session type
+app.config['SESSION_COOKIE_SECURE'] = True
+
+Session(app) 
 
 # OAuth Configuration
 CREDENTIALS_FILE = "credentials.json"  # Path to your credentials JSON file
