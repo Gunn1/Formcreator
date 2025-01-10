@@ -48,7 +48,7 @@ def create_google_flow() -> Flow:
     return Flow.from_client_secrets_file(
         CREDENTIALS_FILE,
         scopes=SCOPES,
-        redirect_uri='https://generator.tylergunn.me/callback',
+        redirect_uri=url_for("callback", _external=True),
     )
 
 def get_google_service(creds_json: str, service_name: str, version: str):
