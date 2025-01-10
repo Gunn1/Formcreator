@@ -1,0 +1,6 @@
+credentials.json
+.env
+token.json
+client_secret.json
+cert.pem
+key.pem
