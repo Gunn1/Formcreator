@@ -83,7 +83,9 @@ def login():
     flow = create_google_flow()
     authorization_url, state = flow.authorization_url(
         access_type="offline",            # Ensure refresh token is provided
-        include_granted_scopes="true"     # Avoid asking for already-granted scopes
+        include_granted_scopes="true",
+        prompt='consent'  # Force user re-authorization if needed
+# Avoid asking for already-granted scopes
     )
     session["state"] = state
     return redirect(authorization_url)
@@ -123,7 +125,6 @@ def index():
     # Initialize Google Forms API
     form_service = None
     if "credentials" in session:
-        print(session)
         form_service = get_google_service(session["credentials"], 'forms', 'v1')
         if not form_service:
             error_message = "Failed to initialize Google Forms service."
