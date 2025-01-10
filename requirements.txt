@@ -6,4 +6,4 @@ google-auth-oauthlib
 google-cloud-aiplatform
 google-cloud-secret-manager
 python-dotenv
-gemini-api
+google-generativeai
