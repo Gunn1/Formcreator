@@ -144,43 +144,43 @@ def index():
                     f"""
                     Generate JSON for creating questions in a Google Form based on the following prompt: {prompt}.
                     For each question, specify the correct answer. The JSON should follow this format:
-{
-  "requests": [
-    {
-      "createItem": {
-        "item": {
-          "title": "(Question Text)",
-          "questionItem": {
-            "question": {
-              "required": true/false,
-              "choiceQuestion": {
-                "type": "RADIO",
-                "options": [
-                  {"value": "(Option 1)"},
-                  {"value": "(Option 2)"},
-                  {"value": "(Option 3)"},
-                  {"value": "(Option 4)"}
-                ],
-                "shuffle": true/false
-              },
-              "grading": {
-                "correctAnswers": {
-                  "answers": [
-                    {"value": "(Correct Answer)"}
-                  ]
-                },
-                "pointValue": (value)
-              }
-            }
-          }
-        },
-        "location": {"index": (index number)}
-      }
-    },
-    // More question blocks here...
-  ]
-}
-Return *only* the JSON object. Do not include any backticks (```), code fences, or explanatory text.
+                    {
+                      "requests": [
+                        {
+                          "createItem": {
+                            "item": {
+                              "title": "(Question Text)",
+                              "questionItem": {
+                                "question": {
+                                  "required": true/false,
+                                  "choiceQuestion": {
+                                    "type": "RADIO",
+                                    "options": [
+                                      {"value": "(Option 1)"},
+                                      {"value": "(Option 2)"},
+                                      {"value": "(Option 3)"},
+                                      {"value": "(Option 4)"}
+                                    ],
+                                    "shuffle": true/false
+                                  },
+                                  "grading": {
+                                    "correctAnswers": {
+                                      "answers": [
+                                        {"value": "(Correct Answer)"}
+                                      ]
+                                    },
+                                    "pointValue": (value)
+                                  }
+                                }
+                              }
+                            },
+                            "location": {"index": (index number)}
+                          }
+                        },
+                        // More question blocks here...
+                      ]
+                    }
+                    Return *only* the JSON object. Do not include any backticks (```), code fences, or explanatory text.
                     """
                 )
 
