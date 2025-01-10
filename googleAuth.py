@@ -33,7 +33,12 @@ SCOPES = [
 app = Flask(__name__)
 app.secret_key = "Supersecurekey"
 
-
+@app.before_request
+def redirect_to_https():
+    if request.headers.get('X-Forwarded-Proto') == 'http':
+        url = request.url.replace('http://', 'https://')
+        code = 301  # Permanent redirect
+        return redirect(url, code=code)
 # OAuth Configuration
 CREDENTIALS_FILE = "credentials.json"  # Path to your credentials JSON file
 SCOPES = [
