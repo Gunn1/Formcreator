@@ -155,7 +155,6 @@ def index():
             "quizSettings": {"isQuiz": true}
         },
         "updateMask": "*"
-        "collectEmail": True
     }
       "createItem": {
         "item": {
