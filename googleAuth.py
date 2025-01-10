@@ -218,6 +218,6 @@ Return *only* the JSON object. Do not include any backticks (```), code fences, 
 
 
 if __name__ == "__main__":
-    app.run(debug=False, use_reloader=False, port=443, host='0.0.0.0', ssl_context=('certificate.crt', 'private.key'))
+    app.run(debug=False, use_reloader=False, host='0.0.0.0', ssl_context=('certificate.crt', 'private.key'))
 
     
