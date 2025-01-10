@@ -163,7 +163,7 @@ def index():
             "question": {
               "required": true/false,
               "choiceQuestion": {
-                "type": "RADIO/",
+                "type": "RADIO",
                 "options": [
                   {"value": "(Option 1)"},
                   {"value": "(Option 2)"},
