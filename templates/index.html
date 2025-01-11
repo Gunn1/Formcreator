@@ -35,13 +35,18 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Generate Form</button>
                 </form>
+
+                <!-- Improved Prompt History Section -->
                 <div class="mt-3">
-                    <label>Prompt History:</label>
-                    <ul class="list-group" id="prompt-history">
+                    <label><strong>Prompt History:</strong></label>
+                    <div class="list-group" id="prompt-history" style="max-height: 300px; overflow-y: auto;">
                         {% for p in prompt_history %}
-                        <li class="list-group-item">{{ p }}</li>
+                        <a href="#" class="list-group-item list-group-item-action" 
+                           data-toggle="tooltip" data-placement="top" title="{{ p }}">
+                            {{ p[:100] }}{% if p|length > 100 %}...{% endif %}
+                        </a>
                         {% endfor %}
-                    </ul>
+                    </div>
                 </div>
 
                 {% if form_preview_data %}
@@ -87,13 +92,17 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        $(document).ready(function () {
+            // Initialize Bootstrap tooltips
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Clickable history items to fill prompt textarea
             const historyItems = document.querySelectorAll('#prompt-history .list-group-item');
             const promptTextarea = document.getElementById('prompt');
 
             historyItems.forEach(item => {
                 item.addEventListener('click', function() {
-                    promptTextarea.value = item.textContent;
+                    promptTextarea.value = item.getAttribute('title'); // Use full prompt on click
                 });
             });
         });
