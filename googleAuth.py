@@ -137,13 +137,13 @@ def index():
             error_message = "Please enter a prompt."
         else:
             # Insert the new prompt at the beginning
-            session['prompt_history'].insert(0, prompt)
+            session['prompt_history'].append(prompt)
 
             # Ensure the list doesn't exceed 5 items
             session['prompt_history'] = session['prompt_history'][:5]
 
             # Get the first 5 items
-            prompt_history = session['prompt_history']
+            prompt_history = session['prompt_history'][-5:][::-1]
             try:
                 # Generate JSON using Gemini
                 gemini_response = geminiQuery(
