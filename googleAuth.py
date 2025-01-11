@@ -220,7 +220,7 @@ def index():
                                 "question": {
                                   "required": true/false,
                                   "textQuestion": {
-                                    "paragraph": boolean,
+                                    "paragraph": false,
                                   },
                                   "grading": {
                                     "correctAnswers": {
