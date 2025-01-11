@@ -137,7 +137,7 @@ def index():
             error_message = "Please enter a prompt."
         else:
             prompt_history.append(prompt)
-            session['prompt_history'] = prompt_history[-5:]  # Keep only last 5 prompts
+            session['prompt_history'] = prompt_history[-5:][::-1]  # Keep only last 5 prompts
             try:
                 # Generate JSON using Gemini
                 gemini_response = geminiQuery(
