@@ -218,7 +218,15 @@ def index():
                                 "question": {
                                 "required": true/false,
                                 "textQuestion": {
-                                    "paragraph": false
+                                    "paragraph": true
+                                }
+                                "grading": {
+                                    "correctAnswers": {
+                                    "answers": [
+                                        {"value": "(Correct Answer)"}
+                                    ]
+                                    },
+                                    "pointValue": (value)
                                 }
                                 }
                             }
