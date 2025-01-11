@@ -159,7 +159,9 @@ def index():
             # Get the first 5 items
             prompt_history = session['prompt_history'][-5:][::-1]
             try:
+                uploaded_file = None
                 try:
+                    
                     file = request.files['file']
                     if file and allowed_file(file.filename):
                         filename = secure_filename(file.filename)
@@ -201,6 +203,35 @@ def index():
                                       ]
                                     },
                                     "pointValue": (value)
+                                  },
+                                "image": {
+                                  contentUri: (URI)
+                                }
+                                }
+                              }
+                            },
+                            "location": {"index": (index number)}
+                          }
+                        },
+                        "createItem": {
+                            "item": {
+                              "title": "(Question Text)",
+                              "questionItem": {
+                                "question": {
+                                  "required": true/false,
+                                  "textQuestion": {
+                                    "paragraph": boolean,
+                                  },
+                                  "grading": {
+                                    "correctAnswers": {
+                                      "answers": [
+                                        {"value": "(Correct Answer)"}
+                                      ]
+                                    },
+                                    "pointValue": (value)
+                                  },
+                                  "image": {
+                                  contentUri: (URI)
                                   }
                                 }
                               }
