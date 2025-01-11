@@ -220,6 +220,7 @@ def index():
                                 "textQuestion": {
                                     "paragraph": true
                                 }
+                                }
                                 "grading": {
                                     "correctAnswers": {
                                     "answers": [
@@ -227,7 +228,6 @@ def index():
                                     ]
                                     },
                                     "pointValue": (value)
-                                }
                                 }
                             }
                             },
