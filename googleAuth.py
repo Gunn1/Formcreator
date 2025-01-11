@@ -175,7 +175,7 @@ def index():
                 gemini_response = geminiQuery(
                     f"""
                     Generate JSON for creating questions in a Google Form based on the following prompt: {prompt}.
-                    For each question, specify the correct answer. The JSON should follow this format: """ + """
+                    For each question, specify the correct answer. The JSON should follow this format: """ + """ 
 
                     {
                     "requests": [
@@ -187,7 +187,7 @@ def index():
                                 "question": {
                                 "required": true/false,
                                 "choiceQuestion": {
-                                    "type": "RADIO",
+                                    "type": "(CHOICE_TYPE)",  # Replace this with RADIO, CHECKBOX, or DROP_DOWN dynamically
                                     "options": [
                                     {"value": "(Option 1)"},
                                     {"value": "(Option 2)"},
@@ -219,14 +219,6 @@ def index():
                                 "required": true/false,
                                 "textQuestion": {
                                     "paragraph": false
-                                },
-                                "grading": {
-                                    "correctAnswers": {
-                                    "answers": [
-                                        {"value": "(Correct Answer)"}
-                                    ]
-                                    },
-                                    "pointValue": (value)
                                 }
                                 }
                             }
@@ -239,7 +231,10 @@ def index():
                     }
 
                     **Instructions**:  
-                    - If the question is multiple-choice, use the `choiceQuestion` block with `RADIO` type.
+                    - If the question is multiple-choice, use the `choiceQuestion` block with a dynamic `type`. The type should be one of the following:
+                        - `RADIO`: If the user can select only one option.
+                        - `CHECKBOX`: If the user can select multiple options.
+                        - `DROP_DOWN`: If the user selects one option from a dropdown.
                     - If the question requires a text answer, use the `textQuestion` block.
                     - For each question, include an image URI if available using the `image` key. If no image is available, omit the `image` key.
                     - Ensure that the correct answer is specified, and add points for grading.
