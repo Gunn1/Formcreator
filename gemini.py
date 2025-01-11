@@ -31,7 +31,7 @@ def upload_file_to_gemini(file_path):
 
 
         # Return the file URI or other useful information
-        return uploaded_file.uri, uploaded_file.display_name
+        return uploaded_file
 
     except Exception as e:
         # Handle errors (e.g., file upload failure)
