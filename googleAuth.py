@@ -140,7 +140,7 @@ def index():
             session['prompt_history'].append(prompt)
 
             # Ensure the list doesn't exceed 5 items
-            session['prompt_history'] = session['prompt_history'][:5]
+            session['prompt_history'] = session['prompt_history'][-5:]
 
             # Get the first 5 items
             prompt_history = session['prompt_history'][-5:][::-1]
