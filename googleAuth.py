@@ -136,8 +136,8 @@ def index():
         if not prompt:
             error_message = "Please enter a prompt."
         else:
-            session['prompt_history'].append(prompt)
-            prompt_history = session['prompt_history'][-5:] # Keep last 5 and reverse
+            session['prompt_history'].insert(0, prompt)
+            prompt_history = session['prompt_history'][:5]# Keep last 5
             print(prompt_history)
             try:
                 # Generate JSON using Gemini
