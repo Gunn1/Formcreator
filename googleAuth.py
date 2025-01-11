@@ -175,73 +175,75 @@ def index():
                 gemini_response = geminiQuery(
                     f"""
                     Generate JSON for creating questions in a Google Form based on the following prompt: {prompt}.
-                    For each question, specify the correct answer. The JSON should follow this format: """ +
-                    """
+                    For each question, specify the correct answer. The JSON should follow this format: """ + """
+
                     {
-                      "requests": [
+                    "requests": [
                         {
-                          "createItem": {
-                            "item": {
-                              "title": "(Question Text)",
-                              "questionItem": {
-                                "question": {
-                                  "required": true/false,
-                                  "choiceQuestion": {
-                                    "type": "RADIO",
-                                    "options": [
-                                      {"value": "(Option 1)"},
-                                      {"value": "(Option 2)"},
-                                      {"value": "(Option 3)"},
-                                      {"value": "(Option 4)"}
-                                    ],
-                                    "shuffle": true/false
-                                  },
-                                  "grading": {
-                                    "correctAnswers": {
-                                      "answers": [
-                                        {"value": "(Correct Answer)"}
-                                      ]
-                                    },
-                                    "pointValue": (value)
-                                  },
-                                "image": {
-                                  contentUri: (URI)
-                                }
-                                }
-                              }
-                            },
-                            "location": {"index": (index number)}
-                          }
-                        },
                         "createItem": {
                             "item": {
-                              "title": "(Question Text)",
-                              "questionItem": {
+                            "title": "(Question Text)",
+                            "questionItem": {
                                 "question": {
-                                  "required": true/false,
-                                  "textQuestion": {
-                                    "paragraph": false,
-                                  },
-                                  "grading": {
+                                "required": true/false,
+                                "choiceQuestion": {
+                                    "type": "RADIO",
+                                    "options": [
+                                    {"value": "(Option 1)"},
+                                    {"value": "(Option 2)"},
+                                    {"value": "(Option 3)"},
+                                    {"value": "(Option 4)"}
+                                    ],
+                                    "shuffle": true/false
+                                },
+                                "grading": {
                                     "correctAnswers": {
-                                      "answers": [
+                                    "answers": [
                                         {"value": "(Correct Answer)"}
-                                      ]
+                                    ]
                                     },
                                     "pointValue": (value)
-                                  },
-                                  "image": {
-                                  contentUri: (URI)
-                                  }
                                 }
-                              }
+                                }
+                            }
                             },
                             "location": {"index": (index number)}
-                          }
+                        }
+                        },
+                        {
+                        "createItem": {
+                            "item": {
+                            "title": "(Question Text)",
+                            "questionItem": {
+                                "question": {
+                                "required": true/false,
+                                "textQuestion": {
+                                    "paragraph": false
+                                },
+                                "grading": {
+                                    "correctAnswers": {
+                                    "answers": [
+                                        {"value": "(Correct Answer)"}
+                                    ]
+                                    },
+                                    "pointValue": (value)
+                                }
+                                }
+                            }
+                            },
+                            "location": {"index": (index number)}
+                        }
                         },
                         // More question blocks here...
-                      ]
+                    ]
                     }
+
+                    **Instructions**:  
+                    - If the question is multiple-choice, use the `choiceQuestion` block with `RADIO` type.
+                    - If the question requires a text answer, use the `textQuestion` block.
+                    - For each question, include an image URI if available using the `image` key. If no image is available, omit the `image` key.
+                    - Ensure that the correct answer is specified, and add points for grading.
+                    
                     Return *only* the JSON object. Do not include any backticks (```), code fences, or explanatory text.
                     """, uploaded_file
                 )
