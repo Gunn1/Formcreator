@@ -7,10 +7,13 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import Flow
 from googleapiclient.discovery import build
-from gemini import geminiQuery
+from gemini import geminiQuery, upload_file_to_gemini
+
 import google.generativeai as genai
 import json
 import os
+from werkzeug.utils import secure_filename
+
 
 # Replace with your actual credentials or use environment variables
 API_KEY = os.environ.get("GEMINI_API_KEY") # Gemini API Key
@@ -26,6 +29,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/userinfo.profile",
     "https://www.googleapis.com/auth/forms.body",
 ]
+UPLOAD_FOLDER = 'uploads'  # Update to your desired folder for storing images
 
 
 
@@ -35,6 +39,14 @@ app.secret_key = "Supersecurekey"
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_TYPE'] = 'filesystem'  # Or your preferred session type
 app.config['SESSION_COOKIE_SECURE'] = True
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Ensure your 'uploads' directory exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'pdf'}
+# Helper function to check allowed file extensions
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # OAuth Configuration
 CREDENTIALS_FILE = "credentials.json"  # Path to your credentials JSON file
@@ -44,7 +56,9 @@ SCOPES = [
     "https://www.googleapis.com/auth/userinfo.profile",
     "https://www.googleapis.com/auth/forms.body",
 ]
-
+# Helper function to check allowed file extensions
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 # Helper Functions
 def create_google_flow() -> Flow:
     """Create an OAuth flow with the required scopes and redirect URI."""
@@ -145,6 +159,16 @@ def index():
             # Get the first 5 items
             prompt_history = session['prompt_history'][-5:][::-1]
             try:
+                try:
+                    file = request.files['file']
+                    if file and allowed_file(file.filename):
+                        filename = secure_filename(file.filename)
+                        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                        file.save(file_path)
+                        uploaded_file = upload_file_to_gemini(file_path)
+                except:
+                    print("No File")
+
                 # Generate JSON using Gemini
                 gemini_response = geminiQuery(
                     f"""
@@ -188,7 +212,7 @@ def index():
                       ]
                     }
                     Return *only* the JSON object. Do not include any backticks (```), code fences, or explanatory text.
-                    """
+                    """, uploaded_file
                 )
 
                 try:
