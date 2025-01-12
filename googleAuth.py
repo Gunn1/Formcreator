@@ -215,16 +215,7 @@ def index():
                                 "question": {
                                 "required": true/false,
                                 "textQuestion": { }
-                                },
-                                "image": {
-                                    {
-                                        "contentUri": string,
-                                        "altText": string,
-                                        "properties": {
-                                            object (MediaProperties)
-                                    },
-                                    "sourceUri": string
-                                    }
+                                }
                             }
                             }
                             },
@@ -241,7 +232,6 @@ def index():
                         - `CHECKBOX`: If the user can select multiple options.
                         - `DROP_DOWN`: If the user selects one option from a dropdown.
                     - If the question requires a text answer, use the `textQuestion` block.
-                    - If the question is a picture, use the `imageItem` block.
                     - For each question, include an image URI if available using the `image` key. If no image is available, omit the `image` key.
                     - Ensure that the correct answer is specified, and add points for grading.
                     
