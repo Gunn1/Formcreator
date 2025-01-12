@@ -114,7 +114,7 @@
         {% endif %}
       </div>
 
-      {% if form_preview_data %}
+      <!-- {% if form_preview_data %}
       <div class="form-preview">
         <h5>Form Preview:</h5>
         {% for request in form_preview_data.requests %} {% if request.createItem
@@ -140,7 +140,8 @@
         </div>
         {% endif %} {% endfor %}
       </div>
-      {% endif %} {% if form_url %}
+      {% endif %}-->
+      {% if form_url %}
       <div class="alert alert-success mt-4 text-center" role="alert">
         Form generated successfully!
         <a href="{{ form_url }}" target="_blank" class="alert-link"
