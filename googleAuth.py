@@ -193,6 +193,7 @@ def index():
                                     {"value": "(Option 2)"},
                                     {"value": "(Option 3)"},
                                     {"value": "(Option 4)"}
+                                    {"image": "(Image URL if Applicable)}
                                     ],
                                     "shuffle": true/false
                                 },
@@ -218,6 +219,25 @@ def index():
                                 "question": {
                                 "required": true/false,
                                 "textQuestion": { }
+                                }
+                            }
+                            },
+                            "location": {"index": (index number)}
+                        }
+                        },
+                        "createItem": {
+                            "item": {
+                            "title": "(Question Text)",
+                            "ImageItem": {
+                                "image": {
+                                "contentUri": string,
+                                "altText": string,
+                                "properties": {
+                                    "alignment": enum (Alignment),
+                                    "width": integer
+                                },
+                                // Union field image_source can be only one of the following:
+                                "sourceUri": string
                                 }
                             }
                             },
