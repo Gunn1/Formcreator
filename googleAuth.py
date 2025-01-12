@@ -231,25 +231,6 @@ def index():
                             "location": {"index": (index number)}
                         }
                         },
-                        "createItem": {
-                            "item": {
-                            "title": "(Question Text)",
-                            "ImageItem": {
-                                "image": {
-                                "contentUri": string,
-                                "altText": string,
-                                "properties": {
-                                    "alignment": enum (Alignment),
-                                    "width": integer
-                                },
-                                // Union field image_source can be only one of the following:
-                                "sourceUri": string
-                                }
-                            }
-                            },
-                            "location": {"index": (index number)}
-                        }
-                        },
                         // More question blocks here...
                     ]
                     }
