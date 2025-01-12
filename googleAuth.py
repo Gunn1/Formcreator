@@ -351,6 +351,16 @@ Using the following JSON, create a Google Form. The JSON should be formatted as 
     }
   }
 }
+                    **Instructions**:  
+                    - If the question is multiple-choice, use the `choiceQuestion` block with a dynamic `type`. The type should be one of the following:
+                        - `RADIO`: If the user can select only one option.
+                        - `CHECKBOX`: If the user can select multiple options.
+                        - `DROP_DOWN`: If the user selects one option from a dropdown.
+                    - If the question requires a text answer, use the `textQuestion` block.
+                    - For each question, include an image URI if available using the `image` key. If no image is available, omit the `image` key.
+                    - Ensure that the correct answer is specified, and add points for grading.
+                    
+                    Return *only* the JSON object. Do not include any backticks (```), code fences, or explanatory text.
 """
                 gemini_response = geminiQuery(prompt+form_prompt,uploaded_file)
                 try:
