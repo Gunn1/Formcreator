@@ -217,17 +217,7 @@ def index():
                             "questionItem": {
                                 "question": {
                                 "required": true/false,
-                                "textQuestion": {
-                                    "paragraph": true
-                                }
-                                }
-                                "grading": {
-                                    "correctAnswers": {
-                                    "answers": [
-                                        {"value": "(Correct Answer)"}
-                                    ]
-                                    },
-                                    "pointValue": (value)
+                                "textQuestion": { }
                                 }
                             }
                             },
