@@ -114,7 +114,33 @@
         {% endif %}
       </div>
 
-      {% if form_url %}
+      {% if form_preview_data %}
+      <div class="form-preview">
+        <h5>Form Preview:</h5>
+        {% for request in form_preview_data.requests %} {% if request.createItem
+        %}
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ request.createItem.item.title }}</h5>
+            {% if request.createItem.item.questionItem.question.choiceQuestion
+            %}
+            <ul class="list-unstyled">
+              {% for option in
+              request.createItem.item.questionItem.question.choiceQuestion.options
+              %} {% set is_correct = option.value in
+              request.createItem.item.questionItem.question.grading.correctAnswers.answers|map(attribute='value')|list
+              %}
+              <li {% if is_correct %}class="correct-answer" {% endif %}>
+                <input type="radio" disabled /> {{ option.value }}
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+      {% endif %} {% if form_url %}
       <div class="alert alert-success mt-4 text-center" role="alert">
         Form generated successfully!
         <a href="{{ form_url }}" target="_blank" class="alert-link"

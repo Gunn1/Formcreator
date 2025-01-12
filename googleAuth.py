@@ -171,118 +171,103 @@ def index():
                 except:
                     print("No File")
 
-                # Generate JSON using Gemini
-                # gemini_response = geminiQuery(
-                #     f"""
-                #     Generate JSON for creating questions in a Google Form based on the following prompt: {prompt}.
-                #     For each question, specify the correct answer. The JSON should follow this format: """ + """ 
 
-                #     {
-                #     "requests": [
-                #         {
-                #         "createItem": {
-                #             "item": {
-                #             "title": "(Question Text)",
-                #             "questionItem": {
-                #                 "question": {
-                #                 "required": true/false,
-                #                 "choiceQuestion": {
-                #                     "type": "(CHOICE_TYPE)",  # Replace this with RADIO, CHECKBOX, or DROP_DOWN dynamically
-                #                     "options": [
-                #                     {"value": "(Option 1)"},
-                #                     {"value": "(Option 2)"},
-                #                     {"value": "(Option 3)"},
-                #                     {"value": "(Option 4)"}
-                #                     {"image": "(Image URL if Applicable)}
-                #                     ],
-                #                     "shuffle": true/false
-                #                 },
-                #                 "grading": {
-                #                     "correctAnswers": {
-                #                     "answers": [
-                #                         {"value": "(Correct Answer)"}
-                #                     ]
-                #                     },
-                #                     "pointValue": (value)
-                #                 }
-                #                 }
-                #             }
-                #             },
-                #             "location": {"index": (index number)}
-                #         }
-                #         },
-                #         {
-                #         "createItem": {
-                #             "item": {
-                #             "title": "(Question Text)",
-                #             "questionItem": {
-                #                 "question": {
-                #                 "required": true/false,
-                #                 "textQuestion": { }
-                #                 },
-                #                 "image": {
-                #                     {
-                #                         "contentUri": string,
-                #                         "altText": string,
-                #                         "properties": {
-                #                             object (MediaProperties)
-                #                     },
-                #                     "sourceUri": string
-                #                     }
-                #             }
-                #             }
-                #             },
-                #             "location": {"index": (index number)}
-                #         }
-                #         },
-                #         "createItem": {
-                #             "item": {
-                #             "title": "(Question Text)",
-                #             "ImageItem": {
-                #                 "image": {
-                #                 "contentUri": string,
-                #                 "altText": string,
-                #                 "properties": {
-                #                     "alignment": enum (Alignment),
-                #                     "width": integer
-                #                 },
-                #                 // Union field image_source can be only one of the following:
-                #                 "sourceUri": string
-                #                 }
-                #             }
-                #             },
-                #             "location": {"index": (index number)}
-                #         }
-                #         },
-                #         // More question blocks here...
-                #     ]
-                #     }
+                    form_prompt = f"""
+                    For each question, specify the correct answer. The JSON should follow this format: """ + """ 
 
-                #     **Instructions**:  
-                #     - If the question is multiple-choice, use the `choiceQuestion` block with a dynamic `type`. The type should be one of the following:
-                #         - `RADIO`: If the user can select only one option.
-                #         - `CHECKBOX`: If the user can select multiple options.
-                #         - `DROP_DOWN`: If the user selects one option from a dropdown.
-                #     - If the question requires a text answer, use the `textQuestion` block.
-                #     - For each question, include an image URI if available using the `image` key. If no image is available, omit the `image` key.
-                #     - Ensure that the correct answer is specified, and add points for grading.
-                    
-                #     Return *only* the JSON object. Do not include any backticks (```), code fences, or explanatory text.
-                #     """, uploaded_file
-                # )
-                form_prompt = """Using the following JSON, create a Google Form. The JSON should be formatted as follows:
-Using the following resource https://developers.google.com/forms/api/reference/rest/v1/forms/batchUpdate#Request.
+                    {
+                    "requests": [
+                        {
+                        "createItem": {
+                            "item": {
+                            "title": "(Question Text)",
+                            "questionItem": {
+                                "question": {
+                                "required": true/false,
+                                "choiceQuestion": {
+                                    "type": "(CHOICE_TYPE)",  # Replace this with RADIO, CHECKBOX, or DROP_DOWN dynamically
+                                    "options": [
+                                    {"value": "(Option 1)"},
+                                    {"value": "(Option 2)"},
+                                    {"value": "(Option 3)"},
+                                    {"value": "(Option 4)"}
+                                    ],
+                                    "shuffle": true/false
+                                },
+                                "grading": {
+                                    "correctAnswers": {
+                                    "answers": [
+                                        {"value": "(Correct Answer)"}
+                                    ]
+                                    },
+                                    "pointValue": (value)
+                                }
+                                }
+                            }
+                            },
+                            "location": {"index": (index number)}
+                        }
+                        },
+                        {
+                        "createItem": {
+                            "item": {
+                            "title": "(Question Text)",
+                            "questionItem": {
+                                "question": {
+                                "required": true/false,
+                                "textQuestion": { }
+                                },
+                                "image": {
+                                    {
+                                        "contentUri": string,
+                                        "altText": string,
+                                        "properties": {
+                                            object (MediaProperties)
+                                    },
+                                    "sourceUri": string
+                                    }
+                            }
+                            }
+                            },
+                            "location": {"index": (index number)}
+                        }
+                        },
+                        "createItem": {
+                            "item": {
+                            "title": "(Question Text)",
+                            "ImageItem": {
+                                "image": {
+                                "contentUri": string,
+                                "altText": string,
+                                "properties": {
+                                    "alignment": enum (Alignment),
+                                    "width": integer
+                                },
+                                // Union field image_source can be only one of the following:
+                                "sourceUri": string
+                                }
+                            }
+                            },
+                            "location": {"index": (index number)}
+                        }
+                        },
+                        // More question blocks here...
+                    ]
+                    }
+
                     **Instructions**:  
                     - If the question is multiple-choice, use the `choiceQuestion` block with a dynamic `type`. The type should be one of the following:
                         - `RADIO`: If the user can select only one option.
                         - `CHECKBOX`: If the user can select multiple options.
                         - `DROP_DOWN`: If the user selects one option from a dropdown.
                     - If the question requires a text answer, use the `textQuestion` block.
+                    - If the question is a picture, use the `imageItem` block.
                     - For each question, include an image URI if available using the `image` key. If no image is available, omit the `image` key.
                     - Ensure that the correct answer is specified, and add points for grading.
                     
                     Return *only* the JSON object. Do not include any backticks (```), code fences, or explanatory text.
-"""
+                    """
+
                 gemini_response = geminiQuery(prompt+form_prompt,uploaded_file)
                 try:
                     # Validate JSON and extract data
