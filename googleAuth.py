@@ -228,14 +228,6 @@ def index():
                                 "textQuestion": { }
                                 }
                             },
-                            "grading": {
-                                    "correctAnswers": {
-                                    "answers": [
-                                        {"value": "(Correct Answer)"}
-                                    ]
-                                    },
-                                    "pointValue": (value)
-                                }
                             }
                             },
                             "location": {"index": (index number)}
