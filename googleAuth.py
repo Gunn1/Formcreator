@@ -242,7 +242,7 @@ def index():
                         - `RADIO`: If the user can select only one option.
                         - `CHECKBOX`: If the user can select multiple options.
                         - `DROP_DOWN`: If the user selects one option from a dropdown.
-                    - If the question requires a text answer, use the `textQuestion` block. Only include the grading section if it would apply to the question.
+                    - If the question requires a text answer, use the `textQuestion` block.
                     - For each question, include an image URI if available using the `image` key. If no image is available, omit the `image` key.
                     - Ensure that the correct answer is specified, and add points for grading.
                     - Replace the Title with a good title for the data.
