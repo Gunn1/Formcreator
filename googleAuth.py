@@ -177,6 +177,17 @@ def index():
                     {
                     "requests": [
                         {
+                        "updateFormInfo": {
+                        {
+                        "info": {
+                            {
+                            "title": "(Title)",
+                            "description": "(Description)"
+                            }
+                        },
+                        "updateMask": "*"
+                        }
+                        },
                         "createItem": {
                             "item": {
                             "title": "(Question Text)",
@@ -216,7 +227,15 @@ def index():
                                 "required": true/false,
                                 "textQuestion": { }
                                 }
-                            }
+                            },
+                            "grading": {
+                                    "correctAnswers": {
+                                    "answers": [
+                                        {"value": "(Correct Answer)"}
+                                    ]
+                                    },
+                                    "pointValue": (value)
+                                }
                             }
                             },
                             "location": {"index": (index number)}
@@ -231,9 +250,11 @@ def index():
                         - `RADIO`: If the user can select only one option.
                         - `CHECKBOX`: If the user can select multiple options.
                         - `DROP_DOWN`: If the user selects one option from a dropdown.
-                    - If the question requires a text answer, use the `textQuestion` block.
+                    - If the question requires a text answer, use the `textQuestion` block. Only include the grading section if it would apply to the question.
                     - For each question, include an image URI if available using the `image` key. If no image is available, omit the `image` key.
                     - Ensure that the correct answer is specified, and add points for grading.
+                    - Replace the Title with a good title for the data.
+                    - Replace the Descrption with a good short discription of the form.
                     
                     Return *only* the JSON object. Do not include any backticks (```), code fences, or explanatory text.
                     """
