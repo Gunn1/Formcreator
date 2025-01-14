@@ -134,8 +134,9 @@ def index():
     form_url = None
     error_message = None
     form_preview_data = None
+    session.setdefault('prompt_history', [])
     prompt_history = session.get('prompt_history', [])
-
+    
     # Initialize Google Forms API
     form_service = None
     if "credentials" in session:
@@ -150,6 +151,7 @@ def index():
         if not prompt:
             error_message = "Please enter a prompt."
         else:
+            
             # Insert the new prompt at the beginning
             session['prompt_history'].append(prompt)
 
