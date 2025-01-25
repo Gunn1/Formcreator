@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #181b1f, #212529);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+      }
+
+      .login-card {
+        background: #1f222a;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .google-btn {
+        background: #4285f4;
+        color: #ffffff;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: background-color 0.3s, transform 0.2s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .google-btn:hover {
+        background: #337ab7;
+        transform: scale(1.02);
+      }
+
+      .spinner-border {
+        display: none;
+        margin-left: 10px;
+      }
+
+      .loading .spinner-border {
+        display: inline-block;
+      }
+
+      .loading .google-btn {
+        pointer-events: none;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-card text-center">
+      <h1 class="mb-4">Welcome Back</h1>
+      <p class="mb-3">Please log in to continue</p>
+      <button id="google-login" class="btn google-btn btn-lg w-100">
+        <img
+          src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png"
+          alt="Google Logo"
+          width="20"
+          onerror="this.onerror=null; this.src='https://via.placeholder.com/20?text=G';"
+        />
+        Login with Google
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </button>
+    </div>
+
+    <script>
+      document
+        .getElementById("google-login")
+        .addEventListener("click", function () {
+          const button = this;
+          button.classList.add("loading");
+          // Simulate a login delay for demonstration purposes
+          setTimeout(() => {
+            button.classList.remove("loading");
+            window.location.href = "/home"; // Redirect after login
+          }, 2000);
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

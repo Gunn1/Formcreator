@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background: linear-gradient(
+          135deg,
+          #181b1f,
+          #212529
+        ); /* Deeper blacks for more contrast */
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+      }
+
+      nav {
+        background-color: #1f222a;
+        width: 100%;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav a {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 1rem;
+      }
+
+      nav a:hover {
+        color: #4a90e2;
+      }
+
+      .container {
+        margin-top: 3rem;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: #b0b3b8;
+      }
+
+      .card {
+        background: #1f222a;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        padding: 1.5rem;
+        color: #ffffff;
+        margin: 1rem;
+      }
+
+      .card:hover {
+        background: #292c34;
+        transform: scale(1.02);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .btn-primary {
+        background: #4a90e2;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 8px;
+      }
+
+      .btn-primary:hover {
+        background: #357abd;
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 1rem 0;
+        text-align: center;
+        background-color: #1f222a;
+        width: 100%;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      footer a {
+        color: #4a90e2;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container d-flex justify-content-center">
+        <a href="#">Home</a>
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>Welcome to the Home Page</h1>
+      <p>
+        Experience a new level of convenience and efficiency with our innovative
+        platform. Discover how our intuitive tools can streamline your workflows
+        and enhance your productivity.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center">
+        <div class="card" style="width: 18rem">
+          <h5 class="card-title">Effortless Quiz Creation</h5>
+          <p class="card-text">
+            Generate engaging quizzes in seconds with our user-friendly
+            interface. Customize questions, set difficulty levels, and add
+            multimedia with ease.
+          </p>
+          <button class="btn btn-primary">Learn More</button>
+        </div>
+        <div class="card" style="width: 18rem">
+          <h5 class="card-title">Seamless Question Preview</h5>
+          <p class="card-text">
+            Preview all your quiz questions within the same tab for quick and
+            convenient review. Ensure accuracy and refine your quiz content
+            effortlessly.
+          </p>
+          <button class="btn btn-primary">Learn More</button>
+        </div>
+        <div class="card" style="width: 18rem">
+          <h5 class="card-title">Quick Access &amp; Efficient Navigation</h5>
+          <p class="card-text">
+            Navigate seamlessly through your quizzes with our intuitive
+            interface and quick links. Easily access and manage your quiz
+            content, results, and more.
+          </p>
+          <button class="btn btn-primary">Learn More</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        © 2025 Tyler Gunn. All rights reserved. <a href="#">Privacy Policy</a>
+      </p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

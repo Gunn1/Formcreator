@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Features</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background: linear-gradient(
+          135deg,
+          #181b1f,
+          #212529
+        ); /* Deeper blacks for more contrast */
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+      }
+
+      nav {
+        background-color: #1f222a;
+        width: 100%;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav a {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 1rem;
+      }
+
+      nav a:hover {
+        color: #4a90e2;
+      }
+
+      .container {
+        margin-top: 3rem;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: #b0b3b8;
+      }
+
+      .feature-card {
+        background: #1f222a;
+        border-radius: 12px;
+        padding: 2rem;
+        margin: 1rem;
+        color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .feature-card:hover {
+        background: #292c34;
+        transform: translateY(-5px);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        color: #4a90e2;
+        margin-bottom: 1rem;
+      }
+
+      .btn-primary {
+        background: #4a90e2;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 8px;
+      }
+
+      .btn-primary:hover {
+        background: #357abd;
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 1rem 0;
+        text-align: center;
+        background-color: #1f222a;
+        width: 100%;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      footer a {
+        color: #4a90e2;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container d-flex justify-content-center">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>Our Features</h1>
+      <p>
+        Explore the tools and capabilities that make our platform unique and
+        easy to use.
+      </p>
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">🚀</div>
+            <h3>Fast Performance</h3>
+            <p>
+              Enjoy lightning-fast speeds and an optimized user experience at
+              all times.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure Platform</h3>
+            <p>
+              Security is at the core of our design. Your data is protected
+              24/7.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">🌍</div>
+            <h3>Global Access</h3>
+            <p>
+              Access your account and data from anywhere, anytime, on any
+              device.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">🤝</div>
+            <h3>Collaboration Tools</h3>
+            <p>
+              Seamlessly collaborate with your team and improve productivity.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">📊</div>
+            <h3>Advanced Analytics</h3>
+            <p>
+              Track, measure, and improve with our state-of-the-art analytics
+              tools.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon">⚙️</div>
+            <h3>Customizable Options</h3>
+            <p>
+              Tailor your experience with fully customizable settings and
+              features.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        © 2025 Your Company. All rights reserved. <a href="#">Privacy Policy</a>
+      </p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

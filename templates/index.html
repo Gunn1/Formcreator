@@ -10,17 +10,22 @@
     />
     <style>
       body {
-        background-color: #f8f9fa;
+        background: linear-gradient(
+          135deg,
+          #181b1f,
+          #212529
+        ); /* Deeper blacks for more contrast */
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         margin: 0;
+        color: white;
       }
       .login-container,
       .app-container {
         max-width: 500px;
-        background: #fff;
+        background: #1f222a;
         padding: 2rem;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -40,9 +45,9 @@
         <p class="mb-4">
           Log in with your Google account to start creating forms.
         </p>
-        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg"
-          >Login with Google</a
-        >
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+          Login with Google
+        </a>
       </div>
       {% else %}
       <div class="profile-menu dropdown">
@@ -105,9 +110,9 @@
           <h5>Prompt History:</h5>
           <div class="list-group">
             {% for p in prompt_history %}
-            <a href="#" class="list-group-item list-group-item-action"
-              >{{ p }}</a
-            >
+            <a href="#" class="list-group-item list-group-item-action">
+              {{ p }}
+            </a>
             {% endfor %}
           </div>
         </div>
@@ -126,12 +131,8 @@
             <ul class="list-unstyled">
               {% for option in
               request.createItem.item.questionItem.question.choiceQuestion.options
-              %} {% set is_correct = option.value in
-              request.createItem.item.questionItem.question.grading.correctAnswers.answers|map(attribute='value')|list
               %}
-              <li {% if is_correct %}class="text-success fw-bold" {% endif %}>
-                <input type="radio" disabled /> {{ option.value }}
-              </li>
+              <li><input type="radio" disabled /> {{ option.value }}</li>
               {% endfor %}
             </ul>
             {% endif %}
@@ -154,18 +155,5 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const historyItems = document.querySelectorAll(".list-group-item");
-        const promptTextarea = document.getElementById("prompt");
-
-        historyItems.forEach((item) => {
-          item.addEventListener("click", function (event) {
-            event.preventDefault();
-            promptTextarea.value = item.textContent.trim();
-          });
-        });
-      });
-    </script>
   </body>
 </html>
