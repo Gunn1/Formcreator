@@ -10,16 +10,13 @@
     />
     <style>
       body {
-        background: linear-gradient(
-          135deg,
-          #181b1f,
-          #212529
-        ); /* Deeper blacks for more contrast */
+        background: linear-gradient(135deg, #181b1f, #212529);
         display: flex;
         justify-content: center;
-        align-items: center;
-        height: 100vh;
+        align-items: flex-start; /* Changed from center */
+        min-height: 100vh; /* Use min-height so content can grow */
         margin: 0;
+        padding-top: 1rem; /* Add some padding to avoid cutoff */
         color: white;
       }
       .login-container,
@@ -121,37 +118,45 @@
       {% if form_preview_data %}
       <div class="mt-4">
         <h5>Form Preview:</h5>
-        {% for request in form_preview_data.requests %} {% if request.createItem
-        %}
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title">{{ request.createItem.item.title }}</h5>
-            {% if request.createItem.item.questionItem.question.choiceQuestion
-            %}
-            <ul class="list-unstyled">
-              {% for option in
-              request.createItem.item.questionItem.question.choiceQuestion.options
-              %}
-              <li><input type="radio" disabled /> {{ option.value }}</li>
-              {% endfor %}
-            </ul>
-            {% endif %}
+        {% for request in form_preview_data.requests %}
+          {% if request.createItem %}
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ request.createItem.item.title }}
+              </h5>
+              {% if request.createItem.item.questionItem.question.choiceQuestion %}
+              <ul class="list-unstyled">
+                {% for option in request.createItem.item.questionItem.question.choiceQuestion.options %}
+                <li class="mb-2">
+                  <input type="radio" disabled {% if option.isCorrect %}checked{% endif %} />
+                  <span {% if option.isCorrect %}class="text-success fw-bold"{% endif %}>
+                    {{ option.value }}
+                  </span>
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
           </div>
-        </div>
-        {% endif %} {% endfor %}
+          {% endif %}
+        {% endfor %}
       </div>
-      {% endif %} {% if form_url %}
+      {% endif %}
+      {% if form_url %}
       <div class="alert alert-success mt-4 text-center" role="alert">
         Form generated successfully!
         <a href="{{ form_url }}" target="_blank" class="alert-link"
           >View Form</a
         >
       </div>
-      {% endif %} {% if error_message %}
+      {% endif %}
+      {% if error_message %}
       <div class="alert alert-danger mt-4" role="alert">
         {{ error_message }}
       </div>
-      {% endif %} {% endif %}
+      {% endif %}
+      {% endif %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
