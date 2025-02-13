@@ -133,9 +133,11 @@
               <ul class="list-unstyled">
                 {% for option in request.createItem.item.questionItem.question.choiceQuestion.options %}
                 <li class="mb-2">
-                  <label class="{% if option.isCorrect %}text-success fw-bold{% endif %}">
+                  <label>
                     <input type="radio" disabled {% if option.isCorrect %}checked{% endif %} />
-                    {{ option.value }}
+                    <span class="{% if option.isCorrect %}text-success fw-bold{% endif %}">
+                      {{ option.value }}
+                    </span>
                   </label>
                 </li>
                 {% endfor %}
