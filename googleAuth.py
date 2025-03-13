@@ -286,7 +286,7 @@ def index():
                 
                 **Instructions**:
                 - For sections, include a section block using pageBreakItem.
-                - For multiple-choice, use choiceQuestion with the proper type (RADIO, CHECKBOX, DROP_DOWN).
+                - For multiple-choice, use choiceQuestion with the proper type (RADIO, CHECKBOX, or DROP_DOWN).
                 - For text answers, use textQuestion.
                 - For file uploads, use fileUploadQuestion with maxFileSize and allowedFileTypes.
                 - For dates, use dateQuestion.
