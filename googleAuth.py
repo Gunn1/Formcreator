@@ -174,84 +174,128 @@ def index():
                     print("No File")
 
 
-                form_prompt = f""" For each question, specify the correct answer. The JSON should follow this format: """ + """ 
-
-                    {
-                    "requests": [
-                        {
-                        "updateFormInfo": {
-                        {
-                        "info": {
-                            {
-                            "title": "(Title)",
-                            "description": "(Description)"
-                            }
-                        },
+                form_prompt = f"""For each question, specify the correct answer. The JSON should follow this format:
+                
+                {{
+                  "requests": [
+                    {{
+                      "updateFormInfo": {{
+                        "info": {{
+                          "title": "(Title)",
+                          "description": "(Description)"
+                        }},
                         "updateMask": "*"
-                        }
-                        },
-                        "createItem": {
-                            "item": {
-                            "title": "(Question Text)",
-                            "questionItem": {
-                                "question": {
-                                "required": true/false,
-                                "choiceQuestion": {
-                                    "type": "(CHOICE_TYPE)",  # Replace this with RADIO, CHECKBOX, or DROP_DOWN dynamically
-                                    "options": [
-                                    {"value": "(Option 1)"},
-                                    {"value": "(Option 2)"},
-                                    {"value": "(Option 3)"},
-                                    {"value": "(Option 4)"}
-                                    ],
-                                    "shuffle": true/false
-                                },
-                                "grading": {
-                                    "correctAnswers": {
-                                    "answers": [
-                                        {"value": "(Correct Answer)"}
-                                    ]
-                                    },
-                                    "pointValue": (value)
-                                }
-                                }
-                            }
-                            },
-                            "location": {"index": (index number)}
-                        }
-                        },
-                        {
-                        "createItem": {
-                            "item": {
-                            "title": "(Question Text)",
-                            "questionItem": {
-                                "question": {
-                                "required": true/false,
-                                "textQuestion": { }
-                                }
-                            },
-                            }
-                            },
-                            "location": {"index": (index number)}
-                        }
-                        },
-                        // More question blocks here...
-                    ]
-                    }
-
-                    **Instructions**:  
-                    - If the question is multiple-choice, use the `choiceQuestion` block with a dynamic `type`. The type should be one of the following:
-                        - `RADIO`: If the user can select only one option.
-                        - `CHECKBOX`: If the user can select multiple options.
-                        - `DROP_DOWN`: If the user selects one option from a dropdown.
-                    - If the question requires a text answer, use the `textQuestion` block.
-                    - For each question, include an image URI if available using the `image` key. If no image is available, omit the `image` key.
-                    - Ensure that the correct answer is specified, and add points for grading.
-                    - Replace the Title with a good title for the data.
-                    - Replace the Descrption with a good short discription of the form.
-                    
-                    Return *only* the JSON object. Do not include any backticks (```), code fences, or explanatory text.
-                    """
+                      }}
+                    }},
+                    // Section block:
+                    {{
+                      "createItem": {{
+                        "item": {{
+                          "title": "(Section Title)",
+                          "pageBreakItem": {{
+                            "description": "(Section Description)"
+                          }}
+                        }},
+                        "location": {{"index": (index number)}}
+                      }}
+                    }},
+                    // Multiple-choice question:
+                    {{
+                      "createItem": {{
+                        "item": {{
+                          "title": "(Question Text)",
+                          "questionItem": {{
+                            "question": {{
+                              "required": true/false,
+                              "choiceQuestion": {{
+                                "type": "(CHOICE_TYPE)",  // Use RADIO, CHECKBOX, or DROP_DOWN.
+                                "options": [
+                                  {{"value": "(Option 1)"}},
+                                  {{"value": "(Option 2)"}},
+                                  {{"value": "(Option 3)"}},
+                                  {{"value": "(Option 4)"}}
+                                ],
+                                "shuffle": true/false
+                              }},
+                              "grading": {{
+                                "correctAnswers": {{
+                                  "answers": [{{"value": "(Correct Answer)"}}]
+                                }},
+                                "pointValue": (value)
+                              }}
+                            }}
+                          }}
+                        }},
+                        "location": {{"index": (index number)}}
+                      }}
+                    }},
+                    // Text answer question:
+                    {{
+                      "createItem": {{
+                        "item": {{
+                          "title": "(Question Text)",
+                          "questionItem": {{
+                            "question": {{
+                              "required": true/false,
+                              "textQuestion": {{}}
+                            }}
+                          }}
+                        }},
+                        "location": {{"index": (index number)}}
+                      }}
+                    }},
+                    // File upload question:
+                    {{
+                      "createItem": {{
+                        "item": {{
+                          "title": "(Question Text)",
+                          "questionItem": {{
+                            "question": {{
+                              "required": true/false,
+                              "fileUploadQuestion": {{
+                                "maxFileSize": (value),
+                                "allowedFileTypes": ["(file type 1)", "(file type 2)"]
+                              }},
+                              "grading": {{
+                                "pointValue": (value)
+                              }}
+                            }}
+                          }}
+                        }},
+                        "location": {{"index": (index number)}}
+                      }}
+                    }},
+                    // Date question:
+                    {{
+                      "createItem": {{
+                        "item": {{
+                          "title": "(Question Text)",
+                          "questionItem": {{
+                            "question": {{
+                              "required": true/false,
+                              "dateQuestion": {{}}
+                            }}
+                          }}
+                        }},
+                        "location": {{"index": (index number)}}
+                      }}
+                    }}
+                    // More question blocks can be added here...
+                  ]
+                }}
+                
+                **Instructions**:
+                - For sections, include a section block using pageBreakItem.
+                - For multiple-choice, use choiceQuestion with the proper type (RADIO, CHECKBOX, DROP_DOWN).
+                - For text answers, use textQuestion.
+                - For file uploads, use fileUploadQuestion with maxFileSize and allowedFileTypes.
+                - For dates, use dateQuestion.
+                - Include an image URI with the image key if available. Omit the key if none.
+                - Ensure that the correct answer is set and add points for grading.
+                - Replace placeholders with appropriate text.
+                
+                Return only the JSON object. Do not include any backticks, code fences, or extra text.
+                """
 
                 gemini_response = geminiQuery(prompt+form_prompt,uploaded_file)
                 try:
