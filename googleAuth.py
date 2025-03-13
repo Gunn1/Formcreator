@@ -192,9 +192,7 @@ def index():
                       "createItem": {{
                         "item": {{
                           "title": "(Section Title)",
-                          "pageBreakItem": {{
-                            "description": "(Section Description)"
-                          }}
+                          "pageBreakItem": {{}}
                         }},
                         "location": {{"index": (index number)}}
                       }}
@@ -285,7 +283,7 @@ def index():
                 }}
                 
                 **Instructions**:
-                - For sections, include a section block using pageBreakItem.
+                - For sections, include a section block using pageBreakItem without a description.
                 - For multiple-choice, use choiceQuestion with the proper type (RADIO, CHECKBOX, or DROP_DOWN).
                 - For text answers, use textQuestion.
                 - For file uploads, use fileUploadQuestion with maxFileSize and allowedFileTypes.
@@ -296,6 +294,7 @@ def index():
                 
                 Return only the JSON object. Do not include any backticks, code fences, or extra text.
                 """
+
 
                 gemini_response = geminiQuery(prompt+form_prompt,uploaded_file)
                 try:
