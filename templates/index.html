@@ -116,29 +116,56 @@
       <div class="form-preview">
         <h5>Form Preview:</h5>
         {% for request in form_preview_data.requests %}
-          {% if request.createItem %}
-          <div class="card mb-3">
-            <div class="card-body">
-              <h5 class="card-title">
-                {{ request.createItem.item.title }}
-              </h5>
-              {% if request.createItem.item.questionItem.question.choiceQuestion %}
-              <ul class="list-unstyled">
-                {% for option in request.createItem.item.questionItem.question.choiceQuestion.options %}
-                {# Compute if this option is correct by checking if its value is in the list of correct answers #}
-                {% if request.createItem.item.questionItem.question.grading is defined %}
-                  {% set is_correct = option.value in request.createItem.item.questionItem.question.grading.correctAnswers.answers | map(attribute='value') | list %}
-                {% else %}
-                  {% set is_correct = false %}
-                {% endif %}                
-                <li {% if is_correct %}class="correct-answer"{% endif %}>
-                  <input type="radio" disabled {% if is_correct %}checked{% endif %}/> {{ option.value }}
-                </li>
-                {% endfor %}
-              </ul>
-              {% endif %}
+          {% if request.updateFormInfo is defined %}
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Form Info</h5>
+                <p><strong>Title:</strong> {{ request.updateFormInfo.info.title }}</p>
+                <p><strong>Description:</strong> {{ request.updateFormInfo.info.description }}</p>
+              </div>
             </div>
-          </div>
+          {% elif request.createItem is defined %}
+            {% set item = request.createItem.item %}
+            <div class="card mb-3">
+              <div class="card-body">
+                {% if item.pageBreakItem is defined %}
+                  <h5 class="card-title">Section: {{ item.title }}</h5>
+                  <p>{{ item.pageBreakItem.description }}</p>
+                {% elif item.questionItem is defined %}
+                  {% set question = item.questionItem.question %}
+                  <h5 class="card-title">{{ item.title }}</h5>
+                  <p><strong>Required:</strong> {{ question.required }}</p>
+                  {% if question.choiceQuestion is defined %}
+                    <p><strong>Type:</strong> {{ question.choiceQuestion.type }}</p>
+                    <ul class="list-unstyled">
+                      {% for option in question.choiceQuestion.options %}
+                        {% set is_correct = false %}
+                        {% if question.grading is defined and question.grading.correctAnswers is defined %}
+                          {% set is_correct = option.value in (question.grading.correctAnswers.answers | map(attribute='value') | list) %}
+                        {% endif %}
+                        <li {% if is_correct %}class="correct-answer"{% endif %}>
+                          <input type="radio" disabled {% if is_correct %}checked{% endif %}/> {{ option.value }}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% elif question.textQuestion is defined %}
+                    <p>Text answer expected.</p>
+                  {% elif question.fileUploadQuestion is defined %}
+                    <p>File upload question.</p>
+                    <p><strong>Max File Size:</strong> {{ question.fileUploadQuestion.maxFileSize }}</p>
+                    <p><strong>Allowed Types:</strong> {{ question.fileUploadQuestion.allowedFileTypes | join(', ') }}</p>
+                  {% elif question.dateQuestion is defined %}
+                    <p>Date question.</p>
+                  {% endif %}
+                  {% if question.grading is defined and question.grading.pointValue is defined %}
+                    <p><strong>Points:</strong> {{ question.grading.pointValue }}</p>
+                  {% endif %}
+                  {% if item.image is defined %}
+                    <img src="{{ item.image }}" alt="Question Image" class="img-fluid" />
+                  {% endif %}
+                {% endif %}
+              </div>
+            </div>
           {% endif %}
         {% endfor %}
       </div>
