@@ -126,7 +126,11 @@
               <ul class="list-unstyled">
                 {% for option in request.createItem.item.questionItem.question.choiceQuestion.options %}
                 {# Compute if this option is correct by checking if its value is in the list of correct answers #}
-                {% set is_correct = option.value in request.createItem.item.questionItem.question.grading.correctAnswers.answers | map(attribute='value') | list %}
+                {% if request.createItem.item.questionItem.question.grading is defined %}
+                  {% set is_correct = option.value in request.createItem.item.questionItem.question.grading.correctAnswers.answers | map(attribute='value') | list %}
+                {% else %}
+                  {% set is_correct = false %}
+                {% endif %}                
                 <li {% if is_correct %}class="correct-answer"{% endif %}>
                   <input type="radio" disabled {% if is_correct %}checked{% endif %}/> {{ option.value }}
                 </li>
