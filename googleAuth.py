@@ -292,7 +292,7 @@ def index():
                 - Ensure that the correct answer is set and add points for grading.
                 - Replace placeholders with appropriate text.
                 
-                Return only the JSON object. Do not include any backticks, code fences, or extra text.
+                Return only the JSON object. Do not include any additional text or commentary.
                 """
 
 
