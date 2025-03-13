@@ -206,7 +206,7 @@ def index():
                             "question": {{
                               "required": true/false,
                               "choiceQuestion": {{
-                                "type": "(CHOICE_TYPE)",  // Use RADIO, CHECKBOX, or DROP_DOWN.
+                                "type": "(CHOICE_TYPE)",  // Use only RADIO, CHECKBOX, or DROP_DOWN.
                                 "options": [
                                   {{"value": "(Option 1)"}},
                                   {{"value": "(Option 2)"}},
@@ -283,8 +283,8 @@ def index():
                 }}
                 
                 **Instructions**:
-                - For sections, include a section block using pageBreakItem without a description.
-                - For multiple-choice, use choiceQuestion with the proper type (RADIO, CHECKBOX, or DROP_DOWN).
+                - For sections, include a section block using pageBreakItem (do not include a description field).
+                - For multiple-choice questions, use choiceQuestion with the proper type. Use only RADIO, CHECKBOX, or DROP_DOWN. Do not use GRID.
                 - For text answers, use textQuestion.
                 - For file uploads, use fileUploadQuestion with maxFileSize and allowedFileTypes.
                 - For dates, use dateQuestion.
@@ -294,6 +294,7 @@ def index():
                 
                 Return only the JSON object. Do not include any backticks, code fences, or extra text.
                 """
+
 
 
                 gemini_response = geminiQuery(prompt+form_prompt,uploaded_file)
